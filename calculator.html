@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+    <div class="calc_wrapper">
+        <div class="box">
+            <label for="text_value">CALCULATOR</label>
+            <input type="text" name="text_value" id="text_value" onkeydown="return false">
+        </div>
+        <div class="calc_elements">
+            <p>0</p>
+            <p>1</p>
+            <p>2</p>
+            <p>3</p>
+            <p>4</p>
+            <p>5</p>
+            <p>6</p>
+            <p>7</p>
+            <p>8</p>
+            <p>9</p>
+            <p>+</p>
+            <p>-</p>
+            <p>*</p>
+            <p>/</p>
+            <p>del</p>
+            <p>sqrt</p>
+             <p>x^2</p>
+            <p>x^3</p>
+            <p>clear</p>
+            <p>=</p>
+        </div> 
+    </div>
+</body>
+</html>
+<style>
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+html{
+    font-size: 10px;
+}
+body{
+    margin-top: 5rem;
+}
+.calc_wrapper{
+    max-width: 40rem;
+    margin: 0 auto;
+    background-color:green;
+    border: 1rem solid black;
+}
+.calc_elements{
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  grid-auto-rows: minmax(7rem,auto);
+  padding: 2rem;  
+  gap: 2rem;
+}
+.calc_elements p{
+    background: greenyellow;
+    text-align: center;
+    padding-top: 3rem;
+    font-size: 2rem;
+    border:0.5rem solid #eee;
+}
+.calc_elements p:hover{
+    cursor: pointer;
+    border:0.5rem solid white;
+    transform: scale(1.2);
+    font-size: 2.2rem;
+}
+input{
+    min-width:38rem;
+    padding: 1.5rem;
+    font-size: 2rem;
+}
+label{
+    font-size: 4rem;
+    padding-left: 6rem;
+    color: whitesmoke;
+}
+</style>
+
+<script>
+    const calc_wrapper=document.querySelector('.calc_wrapper');
+    const input_box=document.querySelector('input');
+    const calc_el=['0','1','2','3','4','5','6','7','8','9','+','-','/','*'];
+    let eval_string='';
+    const pattern =/[\+\/\-\*]/;
+    calc_wrapper.addEventListener('click',e=>{
+        const event_value=e.target.innerText;
+        const output=calc_el.find(val=>{
+            return val===event_value;
+        });
+        if (output!==undefined){
+            eval_string+=output;
+        }else if(event_value==='='){
+            eval_string=String(eval(eval_string));
+        }else if(event_value==='del'){
+            eval_string=eval_string.slice(0,(eval_string.length)-1);
+        }else if(event_value==='clear'){
+            eval_string='';
+        }else if(event_value==='sqrt'){
+            if(pattern.test(eval_string)){
+                eval_string=String(undefined);
+            }
+            else{
+                eval_string=Math.sqrt(eval(eval_string));
+            }
+        }else if(event_value==='x^2'){
+            if(pattern.test(eval_string)){
+                eval_string=String(undefined);
+            }
+            else{
+                eval_string=Math.pow(eval(eval_string),2);
+            }
+        }else if(event_value==='x^3'){
+            if(pattern.test(eval_string)){
+                eval_string=String(undefined);
+            }
+            else{
+                eval_string=Math.pow(eval(eval_string),3);
+            }
+    }
+    input_box.value=eval_string;
+    });
+</script>
