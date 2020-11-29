@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>q6</title>
+</head>
+<body>
+    <input type="text" name="input_string" id="input_string" placeholder="INPUT STRING">
+    <div class="output_box">
+
+    </div>
+</body>
+</html>
+<script>
+    const input_box=document.querySelector('#input_string');
+    const output_box=document.querySelector('.output_box');
+    var num=null;
+    if(this.num===null){
+        output_box.innerHTML=`<p>NO INPUT!</p>`;
+
+    }
+    const reverse_Str=function(str)
+    {
+        let store='';
+        for(let i=1;i<=str.length;i++){
+            store+=str.slice(-i,str.length-(i-1));
+        }
+        output_box.innerHTML=`<p>${store}<p/>`;
+    }
+    input_box.addEventListener('keyup',(e)=>{
+        if(e.target.value==='')
+        {
+            num=null;
+            output_box.innerHTML=`<p>NO INPUT!</p>`;
+        }
+        else{
+            reverse_Str(e.target.value);
+        }
+        
+    });
+
+    
+</script>

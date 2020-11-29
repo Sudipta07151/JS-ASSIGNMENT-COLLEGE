@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>q6</title>
+</head>
+<body>
+    <input type="number" name="input_num" id="input_num" placeholder="INPUT HEIGHT OF TRIANGLE">
+    <div class="output_box">
+
+    </div>
+</body>
+</html>
+<style>
+    span{
+        padding-left: 13px;
+    }
+    input[type=number] {
+        width: 200px;
+      }
+</style>
+<script>
+    const input_box=document.querySelector('#input_num');
+    const output_box=document.querySelector('.output_box');
+    var num=null;
+    var html='';
+    if(this.num===null){
+        output_box.innerHTML=`<p>NO INPUT!</p>`;
+    }
+    const floyd_pattern=function(h)
+    {
+        let counter=1;
+        for(let i=1;i<=h;i++){
+            for(let j=0;j<i;j++)
+            {
+                html+=`<span>${counter}</span>`;
+                counter++;
+            }
+            html+='<br>';
+        }
+        output_box.innerHTML=html;
+    }
+    input_box.addEventListener('keyup',(e)=>{
+        if(e.target.value==='')
+        {
+            num=null;
+            html='';
+            output_box.innerHTML=`<p>NO INPUT!</p>`;
+        }
+        else{
+            num=e.target.valueAsNumber;
+            floyd_pattern(num);
+        }
+    });
+</script>
