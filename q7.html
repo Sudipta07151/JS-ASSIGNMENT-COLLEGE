@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>q7</title>
+</head>
+<body>
+    <input type="text" name="input_string" id="input_string" placeholder="INPUT STRING">
+    <div class="output_box"></div>
+    <button>RESULT</button>
+</body>
+</html>
+<script>
+    const input_box=document.querySelector('#input_string');
+    const output_box=document.querySelector('.output_box');
+    const button=document.querySelector('button');
+    let str='';
+    if(this.num===null){
+        output_box.innerHTML=`<p>NO INPUT!</p>`;
+
+    }
+    const reverse_Str=function(str)
+    {
+        let store='';
+        str=' '+str;
+        let left=str.length-1;
+        let right=0;
+        for(let i=str.length-1;i>=0;i--)
+        {
+            if(str[i]===' ')
+            {
+                right=i+1;
+                for(let j=right;j<=left;j++)
+                {
+                    store+=str[j];
+                }
+                store+=' ';
+                left=right-1;
+            }
+        }
+        console.log(store);
+        output_box.innerHTML=`<p>${store}</p>`;
+    }
+    input_box.addEventListener('keyup',(e)=>{
+        str=e.target.value;        
+    });
+    button.addEventListener('click',e=>{
+        reverse_Str(str);
+    })
+    
+</script>
