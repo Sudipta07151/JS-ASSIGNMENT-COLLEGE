@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>q3</title>
+</head>
+<body>
+    <input type="number" name="input_from" id="input_from" placeholder="FROM ">
+    <input type="number" name="input_to" id="input_to" placeholder="TO">
+     <input type="submit" value="PRESS" id="submit_B">
+     <input type="submit" value="CLEAR OUTPUT" id="clear_B">
+    <div class="output_box"></div>
+</body>
+</html>
+<script>
+    const input_from=document.querySelector('#input_from');
+    const input_to=document.querySelector('#input_to');
+    const submit=document.querySelector('#submit_B')
+    const output_box=document.querySelector('.output_box');
+    const clear=document.querySelector('#clear_B');
+    var to=null;
+    var from=null;
+    var html='';
+    const ck_prime_composite=function(from,to)
+    {
+        if(this.from===null || this.to===null || this.to<this.from)
+        {
+            html+='<p>Please Provide Range Correctly!</p>';
+            return html;
+        }
+        console.log(`from func from:${this.from} to:${this.to}`);
+        for(let i=this.from; i<=this.to;i++)
+        {
+            var flag=true;
+            var n=parseInt(i/2);
+            for(let j=2; j<=n;j++)
+            {
+                if(i%j===0)
+                {
+                    flag=false;
+                    break;
+                }
+            }console.log(flag);
+            if(flag==true){
+                html+=`<p>${i}</p>`;
+            }
+        }
+        return html;
+    }
+    input_from.addEventListener('keyup',e=>{
+        from=e.target.valueAsNumber;
+    })
+    input_to.addEventListener('keyup',e=>{
+        to=e.target.valueAsNumber;
+    })
+    submit.addEventListener('click',(e)=>{
+        console.log(from,to);
+        output_box.innerHTML=ck_prime_composite(from,to);
+        html='';
+    })
+    clear.addEventListener('click',()=>{
+        html='';
+        output_box.innerHTML=html;
+    })
+    input_from.addEventListener('focus',e=>{
+        e.target.value='';
+    })
+    input_to.addEventListener('focus',e=>{
+        e.target.value='';
+    })
+</script>
