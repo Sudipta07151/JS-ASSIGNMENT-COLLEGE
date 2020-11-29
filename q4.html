@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>q4</title>
+</head>
+<body>
+    <input type="number" name="input_num" id="input_num" placeholder="INPUT NUMBER">
+    <div class="output_box">
+
+    </div>
+</body>
+</html>
+<script>
+    const input_box=document.querySelector('#input_num');
+    const output_box=document.querySelector('.output_box');
+    var num=null;
+    if(this.num===null){
+        output_box.innerHTML=`<p>NO INPUT!</p>`;
+
+    }
+    const factorial=function(num)
+    {
+        if(num==0)
+            return 1;
+        else 
+            return factorial(num-1)*num;
+    }
+    input_box.addEventListener('keyup',(e)=>{
+        if(e.target.value==='')
+        {
+            num=null;
+            output_box.innerHTML=`<p>NO INPUT!</p>`;
+        }
+        else{
+            num=e.target.valueAsNumber;
+            output_box.innerHTML=`<p>${factorial(e.target.valueAsNumber)}</p>`
+        }
+        
+    });
+
+    
+</script>
