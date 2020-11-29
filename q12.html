@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>q12</title>
+</head>
+<body>
+    <input type="text" name="input_string" id="input_string">
+    <button>OUTPUT</button>
+    <div class="output_box">
+
+    </div>
+</body>
+</html>
+<style>
+    span{
+        padding-left: 13px;
+    }
+      input[type=text] {
+        width: 400px;
+      }
+</style>
+<script>
+    const input_boxText=document.querySelector('#input_string');
+    const output_box=document.querySelector('.output_box');
+    const button=document.querySelector('button');
+    var num=null;
+    var html='';
+    var str='';
+    if(this.num===null){
+        output_box.innerHTML=`<p>NO INPUT!</p>`;
+    }
+    const toInitials=function(str)
+    {
+        html+=str[0]+' ';
+        let blank;
+        for(let i=1;i<str.length;i++)
+            if(str[i]===' ')
+                blank=i;
+        for(let i=1;i<blank-1;i++)
+        {
+            if(str[i]===' ')
+            {
+                html+=str[i+1]+' '
+            }
+        }
+        html=html.toUpperCase();
+        html=str.slice(blank+1,str.length)+' '+html;
+
+        output_box.innerHTML=html;
+    }
+    button.addEventListener('click',e=>{
+        str=input_boxText.value;
+        toInitials(str);
+    })
+    input_boxText.addEventListener('focus',e=>{
+        e.target.value='';
+        html='';
+        output_box.innerHTML=html;
+    })
+</script>
