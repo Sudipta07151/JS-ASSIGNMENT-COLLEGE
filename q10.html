@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>q8</title>
+    <title>q9</title>
 </head>
 <body>
-    <input type="text" name="input_string" id="input_string" placeholder="INPUT STRING FOR MAKING TRIANGLE">
+    <input type="text" name="input_string" id="input_string" value="abcdefghi">
     <button>OUTPUT</button>
     <div class="output_box">
 
@@ -33,25 +33,34 @@
     }
     const pattern=function(str)
     {
-        let len=str.length
-        for(let i=len;i>=1;i--){
-            for(let j=0;j<=i-1;j++)
-            {
-                html+=`<span>${str[j]}</span>`;
+        let len=str.length-1
+        for(let i=0;i<len;i++){
+            if(i===0){
+                html+=`<span>${str[len]}</span>`;
+                html+='<br>';
             }
-            html+='<br>';
+            else{
+                html+=`<span>${str.slice(-(Math.pow(2,i+1)+1))}</span>`
+                html+='<br>';
+            }
+            if(i==2)
+            {
+                output_box.innerHTML=html;
+                return;
+            }
         }
         output_box.innerHTML=html;
     }
-    input_boxText.addEventListener('keyup',e=>{
-            str=e.target.value;
-    })
     button.addEventListener('click',e=>{
+        str=input_boxText.value;
         pattern(str);
     })
     input_boxText.addEventListener('focus',e=>{
-        e.target.value='';
+        e.target.value='abcdefghi';
         html='';
         output_box.innerHTML=html;
     })
+    document.onkeydown = function (e) {
+        e.preventDefault();        
+      }
 </script>

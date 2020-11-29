@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>q8</title>
+    <title>q9</title>
 </head>
 <body>
     <input type="text" name="input_string" id="input_string" placeholder="INPUT STRING FOR MAKING TRIANGLE">
@@ -34,11 +34,9 @@
     const pattern=function(str)
     {
         let len=str.length
-        for(let i=len;i>=1;i--){
-            for(let j=0;j<=i-1;j++)
-            {
+        for(let i=0;i<len;i++){
+            for(let j=0;j<=i;j++)
                 html+=`<span>${str[j]}</span>`;
-            }
             html+='<br>';
         }
         output_box.innerHTML=html;
