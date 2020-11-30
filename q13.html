@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>q13</title>
+</head>
+<body>
+    <div class="form-wrapper">
+        <form>
+            <label for="email">Email-id</label>
+            <input type="text" name="email" id="email" placeholder="example@gmail.com  or example@euro.co.uk">
+            <label for="pan">PAN NUMBER</label>
+            <input type="text" name="pan" id="pan" placeholder="example: ABCDE1234X (10 characters)">
+            <label for="password">PASSWORD</label>
+            <input type="password" name="password" id="password" placeholder="a-z or A-Z 0-9 special characters(at least one and 8 characters long)">
+            <label for="pin">PIN</label>
+            <input type="text" name="pin" id="pin" placeholder="must be 6 digit long">
+            <label for="date">AGE</label>
+            <input type="date" name="age" id="age">        
+        </form>
+    </div>
+    
+</body>
+</html>
+
+<style>
+    html{
+        font-size: 10px;
+    }
+    .form-wrapper{
+        margin:10rem auto;
+        width: 500px;
+    }
+    form > input{
+        display: block;
+        padding: 0.8rem;
+        width: 35rem;
+        font-size: 1.1rem;
+        margin: 0 auto;
+    }
+    form > label{
+        text-align: center;
+        display: block;
+        font-size: 2rem;
+    }
+    input{
+        border:0.1rem #eee solid;
+    }
+    .valid{
+        border: 0.1rem greenyellow solid;
+    }
+    .invalid{
+        border: 0.1rem crimson solid;
+    }
+</style>
+
+<script>
+    const patterns={
+        email:/^([\w]+)@([a-z]{2,8}).([a-z]{2,8})(.[a-z]{2,8}?)$/,
+        pan:/^[a-z\d]{10}$/i,
+        password:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+        pin:/^[\w@$&\^}{\[\]#!]{6,}$/i,
+    };
+    /*const email=document.getElementById('email');
+    const pan=document.getElementById('pan');
+    const password=document.getElementById('password');
+    const pin=document.getElementById('pin');
+    const age=document.getElementById('age');*/
+
+    const validate=function(field,regex){
+        if(regex.test(field.value))
+            field.className='valid';
+        else
+            field.className='invalid';
+    }
+    const all_inputs=document.querySelectorAll('input');
+    all_inputs.forEach(input=>{
+        input.addEventListener('keyup',e=>{
+            validate(e.target,patterns[e.target.attributes.name.value]);
+        })
+    })
+
+</script>
