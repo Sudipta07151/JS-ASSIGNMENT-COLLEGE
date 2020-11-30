@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="form-wrapper">
-        <form>
+        <form onsubmit="return valid()">
             <label for="email">Email-id</label>
             <input type="text" name="email" id="email" placeholder="example@gmail.com  or example@euro.co.uk">
             <label for="pan">PAN NUMBER</label>
@@ -17,7 +17,8 @@
             <label for="pin">PIN</label>
             <input type="text" name="pin" id="pin" placeholder="must be 6 digit long">
             <label for="date">AGE</label>
-            <input type="date" name="age" id="age">        
+            <input type="date" name="age" id="age">   
+            <input type="submit" value="submit" name="submit">     
         </form>
     </div>
     
@@ -75,10 +76,47 @@
             field.className='invalid';
     }
     const all_inputs=document.querySelectorAll('input');
+    console.log(all_inputs);
     all_inputs.forEach(input=>{
+        if(input.name!=='age')
+        {
         input.addEventListener('keyup',e=>{
+            if(e.target.value!==' ')
             validate(e.target,patterns[e.target.attributes.name.value]);
+            else
+                e.target.className='invalid';
         })
-    })
+        }
+        else{
+            input.addEventListener('change',e=>{
+                let input_date=new Date(e.target.value);
+                let today=Number(new Date().getFullYear());
+                if(today-Number(input_date.getFullYear())>=18)
+                    e.target.className='valid';
+                    else
+                    {
+                        e.target.className='invalid';
+                    }
 
+            })
+        }
+    })
+    var flag=false;
+    const valid=function(){
+        all_inputs.forEach(input=>{
+            if(input.name!=='submit')
+            {
+                if(input.classList.contains('valid'))
+                {
+                    flag=true;
+                }
+                else{   
+                    flag=false;
+                    return flag;
+                }
+                return flag;
+            }
+        })
+        return flag;
+    }
 </script>
